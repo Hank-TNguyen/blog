@@ -15,15 +15,95 @@
     </header>
 
     <main>
-        <article>
-            <h2>First Post</h2>
-            <p>Welcome to my blog. Stay tuned for more!</p>
-        </article>
+        <div class="post-container">
+            <!-- More blog posts will go here -->
+        </div>
     </main>
 
     <footer>
         <p>© 2023 BaoDistributedShuttles</p>
     </footer>
+
+    <button id="hideButton"></button>
+
+    <iframe id="viewer" style="display: none;"></iframe>
+
+    <script>
+        const header = document.querySelector('header');
+
+        // Get a reference to the main element
+        const main = document.querySelector('main');
+
+        // Get a reference to the footer element
+        const footer = document.querySelector('footer');
+
+        const viewer = document.getElementById('viewer');
+
+        const hideButton = document.getElementById('hideButton');
+
+        // Function to extract URL parameters
+        function getURLParameters() {
+            const params = {};
+            const searchParams = new URLSearchParams(window.location.search);
+            for (const [key, value] of searchParams) {
+                params[key] = value;
+            }
+            return params;
+        }
+
+        function showPost(postId) {
+            header.style.display = 'none';
+            main.style.display = 'none';
+            footer.style.display = 'none';
+
+            viewer.src = postId + '.html';
+            // Set the source of the iframe to the post path
+
+            // Display the iframe
+            viewer.style.display = 'block';
+            hideButton.style.display = 'block';
+        }
+
+        // Delay the parameter extraction by 500ms
+        setTimeout(function() {
+            // Get the parameters from the URL
+            const params = getURLParameters();
+
+            // Retrieve the postId parameter
+            if (params.hasOwnProperty('postId')) {
+                const postId = params['postId'];
+                showPost(postId);                
+            }
+        }, 500);
+    </script>
+
+    <script>
+        function hidePost() {
+            const viewer = document.getElementById('viewer');
+            const header = document.querySelector('header');
+            const main = document.querySelector('main');
+            const footer = document.querySelector('footer');
+            const hideButton = document.getElementById('hideButton');
+
+            viewer.style.display = 'none';
+            header.style.display = 'block';
+            main.style.display = 'block';
+            footer.style.display = 'block';
+            hideButton.style.display = 'none';
+            
+            // Clear any parameters in the URL
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+
+        document.getElementById('hideButton').addEventListener('click', function() {
+            hidePost();
+        });
+
+        document.addEventListener('keydown', function(event) {
+            hidePost();
+        });
+    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>

@@ -5,6 +5,7 @@ import markdown
 
 # List to hold all posts data
 posts = []
+stylesheet_path = os.path.abspath('poststyle.css')
 
 # Iterate over all markdown files in the current directory
 for md_file in glob.glob("post*.md"):
@@ -13,7 +14,27 @@ for md_file in glob.glob("post*.md"):
         lines = f.readlines()
 
     # Convert to HTML
-    html = markdown.markdown(''.join(lines))
+    html_content = markdown.markdown(''.join(lines))
+
+    # Wrap content in HTML tags
+    html = f"""
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{md_file.replace('.md', '')}</title>
+        <link rel="stylesheet" href="{stylesheet_path}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="subcontainer">
+                {html_content}
+            </div>
+        </div>
+    </body>
+    </html>
+    """
 
     # Write to an HTML file
     html_file_name = md_file.replace('.md', '.html')

@@ -110,7 +110,7 @@ article p.date {
     filter: invert(1);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 1180px) {
     #searchInput {
         display: none;
     }

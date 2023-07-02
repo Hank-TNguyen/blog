@@ -59,3 +59,8 @@ img {
     background-color: #fff;
     min-height: 100vh;
 }
+
+.subcontainer {
+    /* You can adjust padding values as needed */
+    padding: 15px;
+}

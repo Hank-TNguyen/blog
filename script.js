@@ -25,12 +25,22 @@ window.onload = function() {
                 // Create a new article element
                 const article = document.createElement('article');
 
-                // Create a new h2 element for the title
-                const h2 = document.createElement('h2');
-                h2.textContent = post.title;
+                // Create a new anchor element for the title
+                const anchor = document.createElement('a');
+                anchor.href = '#'; // to make it appear clickable
+                anchor.textContent = post.title;
 
-                // Add an onclick event to the title
-                h2.onclick = function() {
+                // Style the anchor like a heading
+                anchor.style.display = 'block'; // display as block to take full width like a header
+                anchor.style.fontSize = '2em'; // size of h2
+                anchor.style.fontWeight = 'bold'; // make it bold
+                anchor.style.textDecoration = 'none'; // remove underline
+                anchor.style.color = '#333'; // set color
+                
+                // Add an onclick event to the anchor
+                anchor.onclick = function(e) {
+                    e.preventDefault(); // prevent the default action (navigate to href)
+
                     // Hide header, main, and footer
                     header.style.display = 'none';
                     main.style.display = 'none';
@@ -49,8 +59,8 @@ window.onload = function() {
                     window.history.replaceState({}, '', `${window.location.pathname}?${urlParams}`);
                 };
 
-                // Add the title to the article
-                article.appendChild(h2);
+                // Add the anchor to the article
+                article.appendChild(anchor);
 
                 // Add the article to the main element
                 postContainer.appendChild(article);

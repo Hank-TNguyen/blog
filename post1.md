@@ -71,60 +71,9 @@ We need to populate the container of the blog post in the main page. The json co
 
 As I mentioned, I will use markdown. I asked ChatGPT to give me a powershell script to create a file with a template, a really fancy one I create :laughing:.
 
-```markdown
-# <!-- title of the post -->
+![markdownsnippet](markdown-snippet.png)
 
-## <!-- ## first heading -->
-
-### <!-- ### first subheading -->
-
-## <!-- ## second heading -->
-
-<!--write some tag here-->
-```
-
-The script will create a file with the name of the post, it follows a simple rule, get other posts and increment the number. The content is the template above. The script ended up looking like this.
-
-```powershell
-# Get the list of markdown files with the prefix "post"
-$markdownFiles = Get-ChildItem -Filter "post*.md" | Where-Object { $_.Name -match '^post\d+\.md$' }
-
-# Check if any files are found
-if ($markdownFiles.Count -eq 0) {
-    $newFileName = "post0.md"
-    $newSequenceNumber = 0
-} else {
-    # Find the largest sequence number in the existing markdown files
-    $largestSequenceNumber = 0
-    foreach ($file in $markdownFiles) {
-        $sequenceNumber = [regex]::Match($file.Name, '\d+').Value
-        $sequenceNumber = [int]$sequenceNumber
-        if ($sequenceNumber -gt $largestSequenceNumber) {
-            $largestSequenceNumber = $sequenceNumber
-        }
-    }
-
-    # Create the next markdown file with the incremented sequence number
-    $newSequenceNumber = $largestSequenceNumber + 1
-    $newFileName = "post$newSequenceNumber.md"
-}
-
-# Specify the path to the template file
-$templateFilePath = "template.md"
-
-# Read the content of the template file
-$templateContent = Get-Content -Path $templateFilePath -Raw
-
-# Replace placeholders in the template content if needed
-# Example: $templateContent = $templateContent -replace "placeholder1", "replacement1"
-# Uncomment and modify the above line as per your specific needs
-
-# Save the new markdown file with the template content
-$templateContent | Out-File -FilePath $newFileName -Encoding UTF8
-
-# Output the name of the newly created markdown file
-Write-Output "Created $newFileName"
-```
+The script will create a file with the name of the post, it follows a simple rule, get other posts and increment the number. The content is the template above. The script ended up looking like this [blog/WritePost.ps1 at main - Hank-TNguyen/blog (github.com)](https://github.com/Hank-TNguyen/blog/blob/main/WritePost.ps1).
 
 #### 5. Execute scripts and publish
 
@@ -132,7 +81,6 @@ If you check out the github repository [Hank-TNguyen/blog: Blog (github.com)](ht
 
 ```powershell
 .\WritePost.ps1
-# write the post ... 
 python markdown-to-html.py
 git add . 
 git push

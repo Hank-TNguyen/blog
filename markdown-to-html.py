@@ -5,7 +5,7 @@ import markdown
 
 # List to hold all posts data
 posts = []
-stylesheet_path = os.path.abspath('poststyle.css')
+stylesheet_path = 'poststyle.css'
 
 # Iterate over all markdown files in the current directory
 for md_file in glob.glob("post*.md"):

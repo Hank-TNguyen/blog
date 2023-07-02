@@ -2,6 +2,7 @@ import os
 import glob
 import json
 import markdown
+import datetime
 
 # List to hold all posts data
 posts = []
@@ -44,8 +45,19 @@ for md_file in glob.glob("post*.md"):
     # Extract title (assuming it's the first line in markdown file)
     title = lines[0].strip().replace('# ', '')
 
+    # Create an excerpt (first 150 characters or entire post if it's shorter)
+    excerpt = ''.join(lines[1:]).strip()[:150] + '...'
+
+    # Get the last modified date
+    last_modified_date = datetime.datetime.fromtimestamp(os.path.getmtime(md_file))
+
     # Add post details to list
-    posts.append({'title': title, 'path': html_file_name})
+    posts.append({
+        'title': title,
+        'path': html_file_name,
+        'excerpt': excerpt,
+        'last_modified_date': last_modified_date.isoformat(),
+    })
 
 # Write posts data to JSON file
 with open('posts.json', 'w') as json_file:

@@ -16,7 +16,6 @@ header h1 {
 
 main {
     padding: 20px;
-    padding-top: 80px;  /* Make space for the fixed header */
     max-height: calc(100vh - 160px);  /* Adjust based on the size of your header/footer */
     overflow-y: auto;  /* Enable vertical scrolling */
 }
@@ -44,20 +43,16 @@ footer {
 }
 
 .post-container {
-    margin: 50px auto;
-    padding: 20px;
+    margin: 80px auto;
+    margin-top: 35px;
+    padding: 10px;
     border: 1px solid #ccc;
     background-color: white;
     width: 80%;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-article {
-    background-color: white;
-    border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 20px;
+    height: 100%;
+    overflow-y: auto;
 }
 
 footer {
@@ -84,4 +79,39 @@ footer {
     border: none;
     cursor: pointer;
     display: none;
+}
+
+article {
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+article a {
+    font-size: 1.5em;
+    color: #333;
+    text-decoration: none;
+}
+
+article p.excerpt {
+    color: #666;
+    margin: 10px 0;
+}
+
+article p.date {
+    font-size: 0.8em;
+    color: #999;
+    opacity: 0.5;
+    text-align: right;
+}
+
+.logo {
+    filter: invert(1);
+}
+
+@media (max-width: 480px) {
+    #searchInput {
+        display: none;
+    }
 }

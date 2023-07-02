@@ -80,10 +80,10 @@ The script will create a file with the name of the post, it follows a simple rul
 If you check out the github repository [Hank-TNguyen/blog: Blog (github.com)](https://github.com/Hank-TNguyen/blog/tree/main), you can test this locally. Following are the commands I execute when writing a new post
 
 ```powershell
-.\WritePost.ps1
-python markdown-to-html.py
-git add . 
-git push
+.\WritePost.ps1 ;
+python markdown-to-html.py;
+git add . ;
+git push ;
 ```
 
 ## Summary

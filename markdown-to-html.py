@@ -14,6 +14,14 @@ for md_file in glob.glob("post*.md"):
     with open(md_file, 'r') as f:
         lines = f.readlines()
 
+    # Extract the tag from the last comment in the Markdown file
+    tag = ''
+    for line in reversed(lines):
+        line = line.strip()
+        if line.startswith('<!--') and line.endswith('-->'):
+            tag = line[4:-3].strip()
+            break
+
     # Convert to HTML
     html_content = markdown.markdown(''.join(lines))
 
@@ -57,6 +65,7 @@ for md_file in glob.glob("post*.md"):
         'path': html_file_name,
         'excerpt': excerpt,
         'last_modified_date': last_modified_date.isoformat(),
+        'tag': tag
     })
 
 # Write posts data to JSON file

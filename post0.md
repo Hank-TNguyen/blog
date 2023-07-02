@@ -109,4 +109,6 @@ However, the communication is not always this clear. Sometimes, we are not aware
 
 In my opinion, for my team, we should establish clear SLAs with the clients. If there was expected increase in traffic, it should be discussed laterally.
 
-I voiced it out a couple of times but never followed through. Sorry boss! For some team, I'm building up the connection, hopefully there will be less surprises in the future. 
+I voiced it out a couple of times but never followed through. Sorry boss! For some team, I'm building up the connection, hopefully there will be less surprises in the future.
+
+<!-- intermediate -->

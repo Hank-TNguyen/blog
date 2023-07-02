@@ -67,6 +67,14 @@ function displayPosts(posts) {
         const lastModifiedDate = document.createElement('p');
         lastModifiedDate.className = 'date';
         lastModifiedDate.textContent = `Last Modified: ${new Date(post.last_modified_date).toLocaleDateString()}`;
+
+        // Create a new span element for the tag
+        const tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = `tags: ${post.tag}`;
+        tag.style.marginLeft = '10px';
+        tag.style.fontSize = '0.8em';
+        tag.style.color = '#888';
         
         // Add an onclick event to the anchor
         anchor.onclick = function(e) {
@@ -98,6 +106,8 @@ function displayPosts(posts) {
         
         // Add the last modified date to the article
         article.appendChild(lastModifiedDate);
+
+        article.appendChild(tag);
 
         // Add the article to the post container
         postContainer.appendChild(article);
